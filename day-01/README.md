@@ -15,6 +15,12 @@ Given a list of location IDs, solve the following scenarios:
 > Your actual left and right lists contain many location IDs. What is the total
 > distance between your lists?
 
+#### Solution
+
+```sh
+go test -v day-01/part01_test.go
+```
+
 ### Part 2
 
 > This time, you'll need to figure out exactly how often each number from the
@@ -24,3 +30,9 @@ Given a list of location IDs, solve the following scenarios:
 >
 > Once again consider your left and right lists. What is their similarity
 > score?
+
+#### Solution
+
+```sh
+go test -v day-01/part02_test.go 
+```
