@@ -2,7 +2,6 @@ package day01_test
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"sort"
 	"strconv"
@@ -54,10 +53,10 @@ func TestPart01(t *testing.T) {
 
 		total += diff
 
-		fmt.Printf("%v -> %v (+ %v) = %v\n", val1, val2, diff, total)
+		t.Logf("%v -> %v (+ %v) = %v\n", val1, val2, diff, total)
 	}
 
-	fmt.Printf("=== total: %v ===\n", total)
+	t.Logf("=== total: %v ===\n", total)
 
 	if total != 936063 {
 		t.Errorf("expected 936063, got %v", total)
