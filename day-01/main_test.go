@@ -18,7 +18,6 @@ func TestMain(t *testing.T) {
 	// create 2 in-memory arrays, one per column
 	var col1 []int
 	var col2 []int
-	num := 0
 	total := 0
 
 	// loop through each line of the file
@@ -34,8 +33,6 @@ func TestMain(t *testing.T) {
 		// push converted values onto arrays
 		col1 = append(col1, val1)
 		col2 = append(col2, val2)
-
-		num++
 	}
 
 	// sort columns lowest to highest1	`Q`
@@ -43,7 +40,7 @@ func TestMain(t *testing.T) {
 	sort.Ints(col2)
 
 	// compare distance between lowest values
-	for i := 0; i < num; i++ {
+	for i := 0; i < len(col1); i++ {
 		val1, val2 := col1[i], col2[i]
 
 		// go authors don't "believe" in an abs() function?
@@ -61,4 +58,8 @@ func TestMain(t *testing.T) {
 	}
 
 	fmt.Printf("=== total: %v ===\n", total)
+
+	if total != 936063 {
+		t.Errorf("expected 936063, got %v", total)
+	}
 }
