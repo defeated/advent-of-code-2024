@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-func TestMain(t *testing.T) {
+func TestPart01(t *testing.T) {
 	// Open the file
 	file, _ := os.Open("input.txt")
 	defer file.Close()
