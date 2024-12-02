@@ -15,9 +15,9 @@ func TestPart02(t *testing.T) {
 	defer file.Close()
 
 	// create 2 in-memory arrays, one per column
-	var col1 []int
-	var col2 []int
-	total := 0
+	var col1 []float64
+	var col2 []float64
+	var total float64
 
 	// loop through each line of the file
 	scanner := bufio.NewScanner(file)
@@ -26,8 +26,8 @@ func TestPart02(t *testing.T) {
 		fields := strings.Fields(line)
 
 		// convert each string to int
-		val1, _ := strconv.Atoi(fields[0])
-		val2, _ := strconv.Atoi(fields[1])
+		val1, _ := strconv.ParseFloat(fields[0], 64)
+		val2, _ := strconv.ParseFloat(fields[1], 64)
 
 		// push converted values onto arrays
 		col1 = append(col1, val1)
@@ -35,12 +35,12 @@ func TestPart02(t *testing.T) {
 	}
 
 	// sort columns lowest to highest
-	sort.Ints(col1)
-	sort.Ints(col2)
+	sort.Float64s(col1)
+	sort.Float64s(col2)
 
 	// calculate similarity between values in columns
 	for i := 0; i < len(col1); i++ {
-		var occurs int
+		var occurs float64
 		val1 := col1[i]
 
 		// count number of times value from column 1 occur in column 2
@@ -53,12 +53,12 @@ func TestPart02(t *testing.T) {
 
 		total += val1 * occurs
 
-		t.Logf("%v (* %v) = %v\n", val1, occurs, total)
+		t.Logf("%f (* %f) = %f\n", val1, occurs, total)
 	}
 
-	t.Logf("=== total: %v ===\n", total)
+	t.Logf("=== total: %f ===\n", total)
 
 	if total != 23150395 {
-		t.Errorf("expected 23150395, got %v", total)
+		t.Errorf("expected 23150395, got %f", total)
 	}
 }
