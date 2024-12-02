@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-func TestPart01(t *testing.T) {
+func TestPart02(t *testing.T) {
 	// Open the file
 	file, _ := os.Open("input.txt")
 	defer file.Close()
@@ -35,31 +35,31 @@ func TestPart01(t *testing.T) {
 		col2 = append(col2, val2)
 	}
 
-	// sort columns lowest to highest1	`Q`
+	// sort columns lowest to highest
 	sort.Ints(col1)
 	sort.Ints(col2)
 
-	// compare distance between lowest values
+	// calculate similarity between values in columns
 	for i := 0; i < len(col1); i++ {
-		val1, val2 := col1[i], col2[i]
+		var occurs int
+		val1 := col1[i]
 
-		// go authors don't "believe" in an abs() function?
-		// sigh
-		var diff int
-		if val1 >= val2 {
-			diff = val1 - val2
-		} else {
-			diff = val2 - val1
+		// count number of times value from column 1 occur in column 2
+		for z := 0; z < len(col2); z++ {
+			val2 := col2[z]
+			if val1 == val2 {
+				occurs += 1
+			}
 		}
 
-		total += diff
+		total += val1 * occurs
 
-		fmt.Printf("%v -> %v (+ %v) = %v\n", val1, val2, diff, total)
+		fmt.Printf("%v (* %v) = %v\n", val1, occurs, total)
 	}
 
 	fmt.Printf("=== total: %v ===\n", total)
 
-	if total != 936063 {
-		t.Errorf("expected 936063, got %v", total)
+	if total != 23150395 {
+		t.Errorf("expected 23150395, got %v", total)
 	}
 }
