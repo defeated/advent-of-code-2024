@@ -28,7 +28,7 @@ func TestPart01(t *testing.T) {
 
 		// check if list of numbers is all ascending or all descending
 		// and each subsequent number is within a safe range
-		if ascending(nummies) || descending(nummies) {
+		if ascending(&nummies) || descending(&nummies) {
 			total += 1
 		}
 	}
@@ -41,11 +41,11 @@ func TestPart01(t *testing.T) {
 	}
 }
 
-func ascending(list []int) bool {
+func ascending(list *[]int) bool {
 	return isSafe(list, "asc")
 }
 
-func descending(list []int) bool {
+func descending(list *[]int) bool {
 	return isSafe(list, "desc")
 }
 
@@ -53,10 +53,10 @@ func safeRange(x int) bool {
 	return x >= 1 && x <= 3
 }
 
-func isSafe(list []int, dir string) bool {
-	for i := 1; i < len(list); i++ {
-		curr := list[i]
-		prev := list[i-1]
+func isSafe(list *[]int, dir string) bool {
+	for i := 1; i < len(*list); i++ {
+		curr := (*list)[i]
+		prev := (*list)[i-1]
 
 		var diff int
 		var valid bool
