@@ -42,27 +42,37 @@ func TestPart01(t *testing.T) {
 }
 
 func ascending(list []int) bool {
-	for i := 1; i < len(list); i++ {
-		curr := list[i]
-		prev := list[i-1]
-		if curr < prev || !safeRange(curr-prev) {
-			return false
-		}
-	}
-	return true
+	return isSafe(list, "asc")
 }
 
 func descending(list []int) bool {
-	for i := 1; i < len(list); i++ {
-		curr := list[i]
-		prev := list[i-1]
-		if curr > prev || !safeRange(prev-curr) {
-			return false
-		}
-	}
-	return true
+	return isSafe(list, "desc")
 }
 
 func safeRange(x int) bool {
 	return x >= 1 && x <= 3
+}
+
+func isSafe(list []int, dir string) bool {
+	for i := 1; i < len(list); i++ {
+		curr := list[i]
+		prev := list[i-1]
+
+		var diff int
+		var valid bool
+
+		switch dir {
+		case "asc":
+			diff = curr - prev
+			valid = curr < prev
+		case "desc":
+			diff = prev - curr
+			valid = curr > prev
+		}
+
+		if valid || !safeRange(diff) {
+			return false
+		}
+	}
+	return true
 }
