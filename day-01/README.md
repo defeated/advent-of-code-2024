@@ -34,5 +34,5 @@ go test -v day-01/part01_test.go
 #### Solution
 
 ```sh
-go test -v day-01/part02_test.go 
+go test -v day-01/part02_test.go
 ```

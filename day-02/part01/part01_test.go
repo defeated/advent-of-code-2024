@@ -1,4 +1,4 @@
-package day02_test
+package day02_test_01
 
 import (
 	"bufio"
@@ -10,7 +10,7 @@ import (
 
 func TestPart01(t *testing.T) {
 	// Open the file
-	file, _ := os.Open("input.txt")
+	file, _ := os.Open("../input.txt")
 	defer file.Close()
 
 	total := 0
@@ -29,7 +29,7 @@ func TestPart01(t *testing.T) {
 		// check if list of numbers is all ascending or all descending
 		// and each subsequent number is within a safe range
 		if ascending(&nummies) || descending(&nummies) {
-			total += 1
+			total++
 		}
 	}
 

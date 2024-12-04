@@ -11,5 +11,5 @@ Analyze unusual data and count the number of safe reports.
 #### Solution
 
 ```sh
-go test -v day-02/part01_test.go
+go test -v day-02/part01/part01_test.go
 ```
